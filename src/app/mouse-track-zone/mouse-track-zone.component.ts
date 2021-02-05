@@ -9,9 +9,9 @@ import { MySpecialLoggerService } from '../my-special-logger.service';
 })
 export class MouseTrackZoneComponent implements OnInit {
   logLevel: LogLevel = LogLevel.DEBUG;
-  logger: MySpecialLoggerService;
+  //logger: MySpecialLoggerService;
 
-  constructor() {
+  constructor(private logger: MySpecialLoggerService) {
     this.logger = new MySpecialLoggerService(this.logLevel);
   }
 

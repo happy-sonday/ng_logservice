@@ -3,18 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LogLevel } from './log-level.enum';
 import { MouseTrackZoneComponent } from './mouse-track-zone/mouse-track-zone.component';
+import { MySpecialLoggerService } from './my-special-logger.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MouseTrackZoneComponent
+  declarations: [AppComponent, MouseTrackZoneComponent],
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [
+    MySpecialLoggerService,
+    { provide: 'logLevel', useValue: LogLevel.INFO },
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
