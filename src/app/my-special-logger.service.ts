@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { LogLevel } from './log-level.enum';
 import { format } from 'date-fns';
+import { LOG_LEVEL_TOKEN } from './app.tokens';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,9 @@ export class MySpecialLoggerService {
   private readonly _MAX_HISTORY_CNT: number = 100;
   private readonly _TIME_FORMATTER: string = 'yyyy-MM-dd HH:mm:ss.SSS';
 
-  constructor(@Inject('logLevel') logLevel: LogLevel) {
+  // constructor(@Inject('logLevel') logLevel: LogLevel) {
+  /* 외부 라이브러리에서 사용 중인 키와 중복될 수 있어 InjetionToken 사용 */
+  constructor(@Inject(LOG_LEVEL_TOKEN) logLevel: LogLevel) {
     this.logLevel = logLevel;
   }
 
