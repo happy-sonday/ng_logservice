@@ -2,10 +2,10 @@ import { Inject, Injectable } from '@angular/core';
 import { LogLevel } from './log-level.enum';
 import { format } from 'date-fns';
 
-/* @Injectable({
+@Injectable({
   providedIn: 'root',
-}) */
-@Injectable()
+})
+//@Injectable()
 export class MySpecialLoggerService {
   /* 현재 서비스에 설정한 로그레벨 */
   logLevel: LogLevel;
@@ -15,7 +15,7 @@ export class MySpecialLoggerService {
   private readonly _MAX_HISTORY_CNT: number = 100;
   private readonly _TIME_FORMATTER: string = 'yyyy-MM-dd HH:mm:ss.SSS';
 
-  constructor(@Inject('logLevel') logLevel: LogLevel) {
+  constructor(logLevel: LogLevel) {
     this.logLevel = logLevel;
   }
 
