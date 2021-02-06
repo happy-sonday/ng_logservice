@@ -16,7 +16,7 @@ export class AppComponent {
     /*MySpecialLoggerService 를 속성으로 선언하고 생성자에서 기본 로그 레벨을 INFO로 설정  */
     this.logger = new MySpecialLoggerService(LogLevel.INFO);
     /* MySpecialLoggerService의 인스턴스 생성호 testLoggerLevel이라는 메서드를 호출 */
-    this.testLoggerLevel();
+    //this.testLoggerLevel();
   }
 
   testLoggerLevel() {
