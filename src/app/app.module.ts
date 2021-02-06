@@ -11,8 +11,8 @@ import { MySpecialLoggerService } from './my-special-logger.service';
   declarations: [AppComponent, MouseTrackZoneComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [
-    /*   MySpecialLoggerService,
-    { provide: 'logLevel', useValue: LogLevel.INFO }, */
+    MySpecialLoggerService,
+    { provide: 'logLevel', useValue: LogLevel.INFO },
   ],
   bootstrap: [AppComponent],
 })

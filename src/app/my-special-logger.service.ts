@@ -15,7 +15,7 @@ export class MySpecialLoggerService {
   private readonly _MAX_HISTORY_CNT: number = 100;
   private readonly _TIME_FORMATTER: string = 'yyyy-MM-dd HH:mm:ss.SSS';
 
-  constructor(logLevel: LogLevel) {
+  constructor(@Inject('logLevel') logLevel: LogLevel) {
     this.logLevel = logLevel;
   }
 
