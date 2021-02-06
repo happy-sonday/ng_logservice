@@ -2,14 +2,23 @@ import { Inject, Injectable } from '@angular/core';
 import { LogLevel } from './log-level.enum';
 import { format } from 'date-fns';
 import { LOG_LEVEL_TOKEN } from './app.tokens';
+import { LoggerService } from './logger-service';
 
 @Injectable({
   providedIn: 'root',
 })
 //@Injectable()
-export class MySpecialLoggerService {
+export class MySpecialLoggerService extends LoggerService {
+  /* LoggerService 상속받은것에 abstract log 재정의 */
+  log(logLevel: LogLevel, msg: string) {
+    const logMsg = this.getFormattedLogMsg(logLevel, msg);
+    if (this.isProperLogLevel(logLevel)) {
+      console.log(logMsg);
+      this.keepLogHistory(logMsg);
+    }
+  }
   /* 현재 서비스에 설정한 로그레벨 */
-  logLevel: LogLevel;
+  //logLevel: LogLevel;
   /* 속성은 과거 로그를 보관 */
   logs: string[] = [];
   /* 보관할 수 있는 로그의 최대수 */
@@ -19,10 +28,11 @@ export class MySpecialLoggerService {
   // constructor(@Inject('logLevel') logLevel: LogLevel) {
   /* 외부 라이브러리에서 사용 중인 키와 중복될 수 있어 InjetionToken 사용 */
   constructor(@Inject(LOG_LEVEL_TOKEN) logLevel: LogLevel) {
-    this.logLevel = logLevel;
+    //this.logLevel = logLevel;
+    super(logLevel);
   }
 
-  debug(msg: string) {
+  /*   debug(msg: string) {
     this.log(LogLevel.DEBUG, msg);
   }
   info(msg: string) {
@@ -42,7 +52,7 @@ export class MySpecialLoggerService {
       console.log(logMsg);
       this.keepLogHistory(logMsg);
     }
-  }
+  } */
 
   private keepLogHistory(log: string) {
     if (this.log.length === this._MAX_HISTORY_CNT) {
@@ -56,8 +66,8 @@ export class MySpecialLoggerService {
     return `[${LogLevel[logLevel]}] ${curTimestamp} - ${msg}`;
   }
 
-  private isProperLogLevel(logLevle: LogLevel): boolean {
+  /*  private isProperLogLevel(logLevle: LogLevel): boolean {
     if (this.logLevel === LogLevel.DEBUG) return true;
     return logLevle >= this.logLevel;
-  }
+  } */
 }
